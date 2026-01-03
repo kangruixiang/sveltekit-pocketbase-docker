@@ -5,9 +5,8 @@ import PocketBase from 'pocketbase';
 
 // Pocketbase login
 export const superUser = 'admin@pocketbase.com'; 
-// replace with your username
 export const superUserPass = 'password123';
-// replace with your password
+
 
 // Pocketbase url for files
 export const baseURL = 'http://127.0.0.1:8090/api/files';
