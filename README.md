@@ -2,6 +2,8 @@
 
 Template for Sveltekit + Pocketbase, dockerized.
 
+After much pain, trial, and error, I have made it work.
+
 ## Installation
 
 - clone repository
@@ -10,26 +12,32 @@ Template for Sveltekit + Pocketbase, dockerized.
 
 ## How This Works
 
-To make Pocketbase play well in Docker, you have to change the URL depends on whether you are accessing Pocketbase via frontend or backend, local or remote. There are three scenarios:
+To make Pocketbase play well in Docker, you have to change the URL depends on whether you are accessing Pocketbase via browser or server, local or remote. There are three scenarios:
 
 ### Local Dev
 
-This is when you are just running local sveltekit development. Pocketbase should be accessed with http://localhost:8090. 
+This is when you are just running local sveltekit development. Pocketbase should be accessed with `http://localhost:8090`. 
 
 ### Local Docker
 
-This is when you docker compose up on the same development machine. Pocketbase should be http://localhost:8090 when accessed via frontend and http://pocketbase:8090 when accessed in backend.
+This is when you docker compose up on the same development machine. Pocketbase should be `http://localhost:8090` when accessed via browser and `http://pocketbase:8090` when accessed via server.
 
 ### Remote Deploy
 
-This is when you docker compose up on remote server such as NAS. Pocketbase should be the remote IP when accessed via frontend and http://pocketbase:8090 when accessed in backend.
+This is when you docker compose up on remote server such as NAS. Pocketbase should be the remote IP when accessed via browser and `http://pocketbase:8090` when accessed in server.
+
+`const.ts` file under svelte-app/lib folder automates this process and changes pbURL depends on where pocketbase is accessed. You can also use `replacePbUrl` function in the file to change Pocketbase url anywhere in the app. 
+
+### CSP
+
+Under `hooks.server.ts`, PbURL is added to avoid running into problem.
 
 ## Setup
 
-- under .env file in svelte-app, you should have PUBLIC_POCKETBASE_URL and 
-PUBLIC_INTERNAL_POCKETBASE_URL. This file is used in local development. You don't have to change anything here. 
-- in docker-compose.yml, you should also have PUBLIC_POCKETBASE_URL and 
-PUBLIC_INTERNAL_POCKETBASE_URL. These are accessed when you docker compose up. On your local machine, you should keep everything as is. When you deploy to a remote server, change PUBLIC_POCKETBASE_URL to the remote IP wherever you deploy it. 
+- rename `.env_example` to `.env` under svelte-app, you should have `PUBLIC_POCKETBASE_URL` and 
+`PUBLIC_INTERNAL_POCKETBASE_URL`. This file is used in local development. You don't have to change anything here. 
+- in docker-compose.yml, you should also have `PUBLIC_POCKETBASE_URL` and 
+`PUBLIC_INTERNAL_POCKETBASE_UR`L. These are accessed when you docker compose up. On your local machine, you should keep everything as is. When you deploy to a remote server, change `PUBLIC_POCKETBASE_URL` to the remote IP wherever you deploy it. 
 
 ## Start
 

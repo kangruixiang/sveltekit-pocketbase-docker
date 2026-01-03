@@ -28,7 +28,21 @@ export const pbURL = isDev
 console.log('pbURL:', pbURL);
 
 export const pb = new PocketBase(pbURL);
+
+
+/**
+ * Authorizes pocketbase
+ */
 export async function getAuth() {
 	await pb.collection('_superusers').authWithPassword(superUser, superUserPass);
 	console.log('Logged in to Pocket client: ', pb.authStore.isValid);
+}
+
+/**
+ * Replaces local url with remote url if different
+ */
+export function replacePbUrl(content: string) {
+	if (!content) return '';
+	if (pbURL == 'http://127.0.0.1:8090') return content;
+	return content.replace(/http:\/\/127\.0\.0\.1:8090/g, pbURL);
 }
