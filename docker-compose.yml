@@ -1,6 +1,6 @@
 services:
   pocketbase:
-    image: kangruixiang/pocketbase:latest
+    image: yourname/pocketbase:latest
     volumes:
       - ./pb_data:/app/db/pb_data
     ports:

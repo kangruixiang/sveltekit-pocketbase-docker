@@ -19,16 +19,15 @@ prod:
   concurrently "cd pocketbase && pocketbase serve" "cd svelte-app && node build"
 
 docker-svelte-app:
-  docker build -t kangruixiang/svelte-app:0.0.1 ./svelte-app
-  docker tag kangruixiang/svelte-app:0.0.1 kangruixiang/svelte-app:latest
-  docker push kangruixiang/svelte-app:0.0.1
-  docker push kangruixiang/svelte-app:latest
+  docker build -t yourname/app ./svelte-app
+  docker tag yourname/app 
+  docker push yourname/app
 
 docker-pocketbase:
-  docker build -t kangruixiang/pocketbase:0.35.0 ./pocketbase
-  docker tag kangruixiang/pocketbase:0.35.0 kangruixiang/pocketbase:latest
-  docker push kangruixiang/pocketbase:0.35.0
-  docker push kangruixiang/pocketbase:latest
+  docker build -t yourname/pocketbase:0.35.0 ./pocketbase
+  docker tag yourname/pocketbase:0.35.0 yourname/pocketbase:latest
+  docker push yourname/pocketbase:0.35.0
+  docker push yourname/pocketbase:latest
 
 
  
