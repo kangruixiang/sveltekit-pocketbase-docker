@@ -37,7 +37,7 @@ Under `hooks.server.ts`, PbURL is added to avoid running into problem.
 - rename `.env_example` to `.env` under svelte-app, you should have `PUBLIC_POCKETBASE_URL` and 
 `PUBLIC_INTERNAL_POCKETBASE_URL`. This file is used in local development. You don't have to change anything here. 
 - in docker-compose.yml, you should also have `PUBLIC_POCKETBASE_URL` and 
-`PUBLIC_INTERNAL_POCKETBASE_UR`L. These are accessed when you docker compose up. On your local machine, you should keep everything as is. When you deploy to a remote server, change `PUBLIC_POCKETBASE_URL` to the remote IP wherever you deploy it. 
+`PUBLIC_INTERNAL_POCKETBASE_URL`. These are accessed when you docker compose up. On your local machine, you should keep everything as is. When you deploy to a remote server, change `PUBLIC_POCKETBASE_URL` to the remote IP wherever you deploy it. For example, I use tailscale to deploy apps to my home NAS system. So my url is `http://homenas:8090`.
 
 ## Start
 
