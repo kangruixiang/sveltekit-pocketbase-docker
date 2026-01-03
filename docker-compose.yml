@@ -1,0 +1,17 @@
+services:
+  pocketbase:
+    image: kangruixiang/pocketbase:latest
+    volumes:
+      - ./pb_data:/app/db/pb_data
+    ports:
+      - "8090:8090"
+
+  curator:
+    image: #add your svelte-app address
+    environment:
+      - PUBLIC_POCKETBASE_URL=http://localhost:8090 # change to your local IP
+      - PUBLIC_INTERNAL_POCKETBASE_URL=http://pocketbase:8090 # do not change this address 
+    depends_on:
+      - pocketbase
+    ports:
+      - "3000:3000"
